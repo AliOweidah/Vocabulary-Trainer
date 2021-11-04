@@ -1,0 +1,25 @@
+1. Define a type with name Entry with two C++ strings as components key and value for a german and an english term.
+
+2. Define a function implementing above hash function h(t).
+
+3. Define a function inserting a new vocable into the hash table. As first parameter a german string as key, as second parameter the related english string as value for the key and as third parameter the associative array/hash table of above type (1) shall be defined. Please regard that in its body beside calling the hash function (2) also the linear collision strategy has to be defined.
+
+4. Define a further function searching a vocabulary within the hash table and outputting the translated value or an error message that it can not be found.
+As first parameter a german string as key, as second parameter the associative array/hash table of above type (1) shall be defined.
+Please regard that also in its body beside calling the hash function (2) the linear collision strategy has to be regarded.
+
+5.Define a function with a file name as first parameter and an associative array/hash table of type (1) as second.
+The file given by the first parameter has a new german vocable as key and separated by a semicolon (';') as separator the english translation in each line.
+In the body of the function the file shall be read line by line and the vocabulary inserted into the hash table by calling above function (3).
+
+6.Write a function main and like in the examples below
+  * first ask for a prime number p.
+  * then define an array of type (1) with p elements as hash table.
+  * afterwards call function (5) with file "tiere_animals.txt" and the hash table as arguments.
+  * last define a loop, where a german word can be inputted from keyboard and the englsih translation is outputted by calling function (4).
+ 
+Hints : 
+* For p=661 there are no collisions for file "tiere_animals.txt", therefore in a first step you can develop and test your program without having a collision strategy defined.
+* Add in a second step a linear collision strategy. For p=179 and file "tiere_animals.txt" 11 collisions exist, for p=53 much more 157 collisions.
+* Add during programming outputs at senseful points in your program that you can follow whether it works correctly. Examples of such program outputs you can find as separate files to download in the attached files.
+* Test your program also for file "berufe_professions.txt" and different prime numbers p as length of array "file is attached"
