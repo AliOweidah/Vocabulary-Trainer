@@ -26,3 +26,16 @@ Let p=661.
 Such a hash function allows to map arbitrary long strings - a huge infinite number of strings - onto a finite number inbetween 0 and p−. It might happen that different strings tk, tl (and also further ones) are mapped onto the same number/index h(tk)=h(tl)=i. This is called a collision.
 Different solutions exist to deal with such collisions. A very easy one is to increment the calculated index i in a loop by 1 (therefore i+1, i+2, ...) until the first free array element is found and use instead this. If during incrementing value p is reached counting proceeds at the first index of the array. This method is called linear collision strategy.
 As smaller prime number p, the length of the array, will be, as more collisions can be expected. In the end maximum p elements can be stored in the array. Are there no collisions search is extremely fast (only O(1) time consumption plus the calculation of the hash value/index). Hashing tables with a big number p are used very often and preferred for many problems. Are there a lot of collisions search can get linear on the whole array (for m≤p entires in the array O(m) time consumption).
+
+
+Example Hash Table : 
+
+![image](https://user-images.githubusercontent.com/29509292/140308351-db79d700-48c6-43e0-9fb8-abd8abb37b2b.png)
+
+
+Examples Program Runs : 
+
+
+![image](https://user-images.githubusercontent.com/29509292/140308425-73dcb284-6a5d-4da3-9366-e1ef44d14d13.png)
+
+
