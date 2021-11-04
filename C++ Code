@@ -1,0 +1,133 @@
+#include <iostream>
+#include <fstream>
+#include <cstring>
+
+using namespace std;
+
+unsigned int p = 0;
+
+struct Entry
+{
+	string value ;
+	string key;
+};
+
+int Hash_Function(string word)
+{
+	unsigned int h;
+	h = 0;
+	for ( int i = 0; i < word.length(); i++)
+	{
+		h = ( h* 128 + (int)word[i])% p;
+	};
+
+	return h;
+}
+
+Entry Line_spliter(string line)
+{
+   Entry Splited_word;
+   string key;
+   for (auto x : line)
+   {
+       if (x == ';')
+       {
+           Splited_word.key = key;
+           int pos = line.find(";");
+           Splited_word.value = line.substr (pos+1);
+       }
+       else
+       {
+           key = key + x;
+       }
+   }
+    return Splited_word;
+}
+
+void Insert_Function(string key,string value,Entry words[])
+{
+    int index=Hash_Function(key);
+    while(words[index].key != "")
+    {
+        if(key=="")
+        {
+            break;
+        }
+        index++;
+        if(index >= p)
+        {
+            index=0;
+        }
+    }
+    words[index].key=key;
+    words[index].value=value;
+}
+
+void File_open(Entry words[])
+{
+    Entry single_line;
+    string file_line,key,value;
+    ifstream file_("tiere_animals.txt");
+    if(file_.is_open())
+    {
+        while(getline(file_,file_line))
+        {
+            single_line=Line_spliter(file_line);
+            Insert_Function(single_line.key,single_line.value,words);
+        }
+        file_.close();
+    }
+
+    else
+        cout<<"file is not open"<<endl;
+}
+
+void search_Function(string key,Entry words[])
+{
+    int h;
+    h=Hash_Function(key);
+    if(words[h].key!="" && words[h].key == key)
+    {
+        cout<<words[h].key<<" -> "<<words[h].value<<endl;
+    }
+    else
+    {
+        for(int index =0;index<p;index++)
+        {
+        if(words[index].key == key)
+        {
+           cout<<words[index].key<<" -> "<<words[index].value<<endl;
+           break;
+        }
+        else
+        index++;
+                if(index == p)
+        {
+        cout<<"Sorry not known"<<endl;
+        break;
+        }
+        }
+    }
+}
+
+int main()
+{
+	string translated_word,file_name;
+	string German_word,English_word;
+	cout << "please input value for (prime) number p: ";
+	cin >> p;
+	Entry words[p];
+    File_open(words);
+    while(translated_word!="0")
+    {
+
+
+    cout<<"translate (0 for end): ";
+    cin>>translated_word;
+    if(translated_word!="0")
+        {
+            search_Function(translated_word,words);
+        }
+    }
+	return 0;
+}
